@@ -1,4 +1,7 @@
+UNI_B = False
+
 def the_right_brow (file):
+	global UNI_B
 	with open (file) as rb:
 		drbrow = rb.readlines ()
 		
@@ -7,7 +10,12 @@ def the_right_brow (file):
 	for line in drbrow:
 		crbrow.append (line.replace ("\n", ""))
 		
-	return crbrow
+	if "/U" in crbrow:
+		UNI_B = True
+		return crbrow [0:crbrow.index("/U")]
+		
+	else:
+		return crbrow
 
 def groupe_letters (iter):
 	f_str = ""
@@ -37,7 +45,16 @@ def the_left_brow (right_brow):
 	
 def groupe_brows (r_brow, l_brow):
 	brows = []
-	for line in l_brow:
-		brows.append (line + (" " * 5) + r_brow[l_brow.index(line)])
+	
+	if UNI_B:
+		for line in l_brow:
+			if line [0] == " ":
+				brows.append (line + ("." * 5) + r_brow[l_brow.index(line)])
+			
+			else:
+				brows.append (line + (" " * 5) + r_brow[l_brow.index(line)])
+	else :
+		for line in l_brow:
+			brows.append (line + (" " * 5) + r_brow[l_brow.index(line)])
 	
 	return brows
