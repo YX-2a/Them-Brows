@@ -1,4 +1,13 @@
 UNI_B = False
+CHAR_ = ""
+
+def char_set (brow):
+	global CHAR_
+	brow_c = []
+	for line in brow:
+		brow_c.append (line.replace(" ",""))
+		
+	CHAR_ = brow_c[0][0]
 
 def the_right_brow (file):
 	global UNI_B
@@ -9,7 +18,9 @@ def the_right_brow (file):
 	
 	for line in drbrow:
 		crbrow.append (line.replace ("\n", ""))
-		
+	
+	char_set (crbrow)
+	
 	if "/U" in crbrow:
 		UNI_B = True
 		return crbrow [0:crbrow.index("/U")]
@@ -49,7 +60,7 @@ def groupe_brows (r_brow, l_brow):
 	if UNI_B:
 		for line in l_brow:
 			if line [0] == " ":
-				brows.append (line + ("." * 5) + r_brow[l_brow.index(line)])
+				brows.append (line + (CHAR_ * 5) + r_brow[l_brow.index(line)])
 			
 			else:
 				brows.append (line + (" " * 5) + r_brow[l_brow.index(line)])
