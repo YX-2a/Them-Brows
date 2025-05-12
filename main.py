@@ -14,6 +14,6 @@ def main ():
 			system ("clear")
 		
 	except KeyboardInterrupt :
-		print ("Them Brows :)")
+		print ("Them Brows :)\n")
 		
 main ()
